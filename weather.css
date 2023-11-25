@@ -1,0 +1,107 @@
+﻿/*--20224612_cse2wdx_assignment3--
+This app requests data from openweathermap.org by using 5-day forecast API and device coordinates from W3C Geolocation.
+Forecast summary table and a temperature chart are created as specified by the assessment criteria. This CSS file controls formatting of most HTML elements. Formatting of canvas element is done using javascript chart.js syntax in weather.js file of this app*/
+
+body {
+    background-color: #E3f3e8;
+    overflow: auto;
+}
+
+/* Control placement and width of the main elements within a single div*/
+.container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+    background-color: #d8eaf0;
+    border: 2px solid gray;
+    border-radius: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px 15px 0px 0px;
+    background: rgb(173,216,230);
+    color: dodgerblue;
+    text-align: center;
+    font-size: 16pt;
+}
+
+h2 {
+    text-align: center;
+    color: dodgerblue;
+    font-size: 200%;
+}
+
+#errorMessage {
+    text-align:center;
+    color:red;
+    font-size:16pt;
+}
+
+#welcomeScreen {
+    text-align: center;
+}
+
+button {
+    border-radius: 6px;
+    font-size: 1.2vw;
+    font-weight: 500;
+    padding: 4px;
+}
+
+table, th, td {
+    text-align: center;
+    color: #000218;
+    font-size: 1.3vw;
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 10px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+/*Create day and night background effects with gradients*/
+canvas, table {
+    background: linear-gradient(90deg, rgba(15,12,71,0.6) 23%, rgba(182,195,213,0.6) 33%, rgba(102,223,247,0.6) 83%, rgba(12,8,96,0.6) 94%);
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgb(173,216,230);
+    color: dodgerblue;
+    height: 55px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0px 0px 15px 15px;
+    text-align: center;
+    font-size: 12pt;
+}
+
+/*Contain table text lines within cell borders in large browser windows*/
+@media screen and (min-width: 1200px) {
+    table, th, td {
+        font-size: 13pt;
+    }
+}
+/*Preserve readability of table data in small browser windows*/
+@media screen and (max-width: 850px) {
+    table, th, td {
+        font-size: 10pt;
+    }
+}
+
+/*Flip text of the first table column vertically in small browser windows*/
+@media screen and (max-width: 850px) {
+    tr > td:first-child {
+        writing-mode: vertical-rl;
+    }
+}

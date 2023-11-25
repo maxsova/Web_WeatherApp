@@ -1,0 +1,88 @@
+﻿<!--20224612_cse2wdx_assignment3
+This app requests data from openweathermap.org by using 5-day forecast API and device coordinates determined by W3C Geolocation. Forecast summary table and a temperature chart are created as specified by the assessment criteria. This HTML file creates a markup structure that interacts with other app resources and browsers. -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns=http://www.w3.org/1999/xhtml>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Forecast</title>
+
+    <script src="Scripts/jquery-3.6.3.js"></script>
+    <script src="Scripts/jquery-3.6.3.min.js"></script>
+
+    <!--chart.js CDN link-->
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js></script>
+
+    <link href="weather.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Weather Forecast</h1>
+        </div><br>
+
+        <div class="content">
+
+            <div id="errorMessage"></div>
+
+            <div id="welcomeScreen">
+                <!--coordinates to show at welcome screen-->
+                <h2>Your location:</h2>
+                <p id="lat"></p>
+                <p id="lon"></p>
+                <!--button that launches openweather api, data parsing and display-->
+                <button type="button" onclick="getForecast()">Get weather</button><!--coordinates to show at welcome screen-->
+            </div>
+
+            <div id="forecast">
+                <!--table and chart display-->
+                <h2 id="locationMessage">_</h2><!--location message placeholder-->
+                <table>
+                    <!--<thead>-->
+                    <tr>
+                        <th></th>
+                        <th>1am</th>
+                        <th>4am</th>
+                        <th>7am</th>
+                        <th>10am</th>
+                        <th>1pm</th>
+                        <th>4pm</th>
+                        <th>7pm</th>
+                        <th>10pm</th>
+                    </tr>
+                    <!--</thead>-->
+                    <tbody id="forecastTable">
+                    </tbody>
+                </table>
+                <p></p>
+                <div class="chartArea">
+                    <canvas id="chart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>
+                <br> &copy; 2023, student id:20224612 &nbsp;
+                <a href="https://jigsaw.w3.org/css-validator" target="_blank">
+                    <img src="Images/CSS_Validation_logo.png" style="width:6%" alt="CSS Validation link">
+                </a>&nbsp;
+                <a href="https://validator.w3.org/" target="_blank">
+                    <img src="Images/HTML_Validation_logo.png" style="width:6%" alt="HTML Validation link">
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <script src="weather.js"></script>
+
+</body>
+</html>
