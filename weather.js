@@ -92,11 +92,7 @@ async function getForecast() {
               
 
         printChart(forecasts);
-
-        setTimeout(() => {
-            printTable(); // Call the function after the delay
-        }, 1000); // 1000 milliseconds = 1 second
-       // printTable(forecasts);
+        printTable();
     } catch (err) {
         console.log(err);
     }
@@ -105,6 +101,7 @@ async function getForecast() {
 //Funcion displaying data nodes as table entries.
 function printTable() {
     const table = document.getElementById("forecastTable");
+    const tableHeader = document.getElementById("forecastTableHeader");
     const days = {};//create empty data object
 
     //iterate through 32 objects in forecast list
@@ -125,6 +122,19 @@ function printTable() {
         };
 
     });
+
+    let dataCell = document.createElement('th'); //add blank header cell in top left
+    tableHeader.appendChild(dataCell);
+    const startHour = Object.keys(days[Object.keys(days)[0]])[0] % 3
+    for (let hour = startHour; hour < 24; hour+=3) {
+        dataCell = document.createElement('th');
+        const headerValue = document.createElement('p')
+
+        headerValue.textContent = ((hour == 12) ? "12" : hour % 12) + ((hour >= 12) ? "pm" : "am")
+
+        dataCell.appendChild(headerValue);
+        tableHeader.appendChild(dataCell);
+    }
 
     Object.entries(days).forEach(function([day, time]){//iterate through each days{}
         const row = document.createElement('tr');
