@@ -4,12 +4,9 @@
 // This JS file controls functionality of the app, inserts interactive HTML text nodes, creates forecast table and chart and formats the chart using chart.js API. 
 
 //***************************************** GLOBAL VARIABLES ******************************************
-const apiKey = '757cacbac90d301510b45877056105e7';
+const apiKey = config.apiKey;
 const apiUrl = 'http://api.openweathermap.org/data/2.5/forecast';
 
-//a new API from 251123:
-//const apiUrl = 'http://api.openweathermap.org/data/3.0/onecall?';
-//const apiKey = '87204891914695dac1c76f2e39991ee8';
 
 const degC = '\u00A0\u2103';//a degC code for forecast table entries
 let locationName;
@@ -95,11 +92,7 @@ async function getForecast() {
               
 
         printChart(forecasts);
-
-        setTimeout(() => {
-            printTable(); // Call the function after the delay
-        }, 1000); // 1000 milliseconds = 1 second
-       // printTable(forecasts);
+        printTable();
     } catch (err) {
         console.log(err);
     }
@@ -108,6 +101,7 @@ async function getForecast() {
 //Funcion displaying data nodes as table entries.
 function printTable() {
     const table = document.getElementById("forecastTable");
+    const tableHeader = document.getElementById("forecastTableHeader");
     const days = {};//create empty data object
 
     //iterate through 32 objects in forecast list
@@ -129,14 +123,26 @@ function printTable() {
 
     });
 
+    let dataCell = document.createElement('th'); //add blank header cell in top left
+    tableHeader.appendChild(dataCell);
+    const startHour = Object.keys(days[Object.keys(days)[0]])[0] % 3
+    for (let hour = startHour; hour < 24; hour+=3) {
+        dataCell = document.createElement('th');
+        const headerValue = document.createElement('p')
+
+        headerValue.textContent = ((hour == 12) ? "12" : hour % 12) + ((hour >= 12) ? "pm" : "am")
+
+        dataCell.appendChild(headerValue);
+        tableHeader.appendChild(dataCell);
+    }
+
     Object.entries(days).forEach(function([day, time]){//iterate through each days{}
         const row = document.createElement('tr');
         const dateCell = document.createElement('td');
         dateCell.textContent = day;
         row.appendChild(dateCell);//place a forecast date in first cell of each created row
-
-        for (let i = 1; i <9; i++) {
-            const hour = i * 3 - 2;//generate 8 values of hour to match hours of the forecast
+        const startHour = Object.keys(time)[0] % 3
+        for (let hour = startHour; hour < 24; hour+=3) {
             const dataCell = document.createElement('td');//create blank table cells for 8 hour colunms
 
             //for each hour value in each of day rows, extract temperature, image url and description from JASON
