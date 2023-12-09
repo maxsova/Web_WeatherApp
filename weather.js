@@ -123,8 +123,8 @@ function printTable() {
 
         days[day][hour] = {//create nested days{} objects for every hour of all dates (day) in the forecast
             temp: forecast.main.temp,
-           // icon: forecast.weather[0].icon,
-           // description: forecast.weather[0].description
+            icon: forecast.weather[0].icon,
+            description: forecast.weather[0].description
         };
 
     });
