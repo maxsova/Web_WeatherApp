@@ -4,12 +4,9 @@
 // This JS file controls functionality of the app, inserts interactive HTML text nodes, creates forecast table and chart and formats the chart using chart.js API. 
 
 //***************************************** GLOBAL VARIABLES ******************************************
-const apiKey = '757cacbac90d301510b45877056105e7';
+const apiKey = config.apiKey;
 const apiUrl = 'http://api.openweathermap.org/data/2.5/forecast';
 
-//a new API from 251123:
-//const apiUrl = 'http://api.openweathermap.org/data/3.0/onecall?';
-//const apiKey = '87204891914695dac1c76f2e39991ee8';
 
 const degC = '\u00A0\u2103';//a degC code for forecast table entries
 let locationName;
