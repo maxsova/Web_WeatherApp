@@ -134,9 +134,8 @@ function printTable() {
         const dateCell = document.createElement('td');
         dateCell.textContent = day;
         row.appendChild(dateCell);//place a forecast date in first cell of each created row
-
-        for (let i = 1; i <9; i++) {
-            const hour = i * 3 - 2;//generate 8 values of hour to match hours of the forecast
+        const startHour = Object.keys(time)[0] % 3
+        for (let hour = startHour; hour < 24; hour+=3) {
             const dataCell = document.createElement('td');//create blank table cells for 8 hour colunms
 
             //for each hour value in each of day rows, extract temperature, image url and description from JASON
